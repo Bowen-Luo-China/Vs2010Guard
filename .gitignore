@@ -1,0 +1,16 @@
+# 构建产物
+[Bb]in/
+[Oo]bj/
+.vs/
+packages/
+*.user
+*.suo
+*.pdb
+*.cache
+
+# 编译出来的二进制（但一键安装包里的 .vsix 要留着）
+*.exe
+*.dll
+*.obj
+*.o
+!一键安装包/*.vsix

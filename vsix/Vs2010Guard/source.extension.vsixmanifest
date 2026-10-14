@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+  <Metadata>
+    <Identity Id="Vs2010Guard.6e1d2b3a-4c5f-4a7b-9e10-9a8b7c6d5e4f" Version="1.0.0" Language="en-US" Publisher="DeepSeekDaily" />
+    <DisplayName>VS2010 兼容性提示 (Vs2010Guard)</DisplayName>
+    <Description xml:space="preserve">在 VS2026 里用红色波浪线标出 VS2010 (VC10 / C89) 编译不过的 C 语言写法，鼠标悬停给出替代写法。只作用于 .c / .h 文件。</Description>
+    <Tags>C, C89, VS2010, compatibility, 兼容性</Tags>
+  </Metadata>
+  <Installation>
+    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0,19.0)">
+      <ProductArchitecture>amd64</ProductArchitecture>
+    </InstallationTarget>
+  </Installation>
+  <Dependencies>
+    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" Version="[4.7.2,)" />
+  </Dependencies>
+  <Prerequisites>
+    <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[17.0,19.0)" DisplayName="Visual Studio 核心编辑器" />
+  </Prerequisites>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.VsPackage" Path="Vs2010Guard.pkgdef" />
+    <Asset Type="Microsoft.VisualStudio.MefComponent" Path="Vs2010Guard.dll" />
+  </Assets>
+</PackageManifest>

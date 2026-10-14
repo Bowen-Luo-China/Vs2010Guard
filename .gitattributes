@@ -1,0 +1,8 @@
+# 批处理/脚本必须保持 CRLF，否则 cmd 会出怪问题
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+# 二进制
+*.vsix binary
+*.zip binary
+*.png binary

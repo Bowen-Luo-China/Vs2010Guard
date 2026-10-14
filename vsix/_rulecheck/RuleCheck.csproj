@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- 只用来跑规则引擎做对比测试，不参与 VSIX 打包 -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>7.3</LangVersion>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AssemblyName>RuleCheck</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\Vs2010Guard\Vs2010Rules.cs" />
+    <Compile Include="Program.cs" />
+  </ItemGroup>
+</Project>

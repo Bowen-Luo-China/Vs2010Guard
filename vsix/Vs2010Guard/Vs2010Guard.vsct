@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <Extern href="stdidcmd.h" />
+  <Extern href="vsshlids.h" />
+  <Commands package="guidVs2010GuardPackage">
+    <Groups>
+      <Group guid="guidVs2010GuardCmdSet" id="MyMenuGroup" priority="0x0600">
+        <!-- VS2026 必须直接挂在"工具"菜单上；老的 IDG_VS_MM_TOOLSADDINS 分组已经不渲染了 -->
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS" />
+      </Group>
+    </Groups>
+    <Buttons>
+      <Button guid="guidVs2010GuardCmdSet" id="ToggleCmd" priority="0x0100" type="Button">
+        <Parent guid="guidVs2010GuardCmdSet" id="MyMenuGroup" />
+        <Strings>
+          <ButtonText>开启/关闭 VS2010 兼容性检查</ButtonText>
+          <CommandName>Vs2010Guard.Toggle</CommandName>
+        </Strings>
+      </Button>
+    </Buttons>
+  </Commands>
+  <CommandPlacements>
+    <CommandPlacement guid="guidVs2010GuardCmdSet" id="ToggleCmd" priority="0x0100">
+      <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_SOLNNODE" />
+    </CommandPlacement>
+  </CommandPlacements>
+  <Symbols>
+    <GuidSymbol name="guidVs2010GuardPackage" value="{9f2c6a41-7b3d-4e58-9c1a-6d5e8f3b2a70}" />
+    <GuidSymbol name="guidVs2010GuardCmdSet" value="{3a7d1e94-5c2b-4f86-b1d3-8e6a09c47f52}">
+      <IDSymbol name="MyMenuGroup" value="0x1020" />
+      <IDSymbol name="ToggleCmd" value="0x0100" />
+    </GuidSymbol>
+  </Symbols>
+</CommandTable>

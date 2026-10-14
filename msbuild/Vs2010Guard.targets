@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Vs2010Guard.targets —— 构建时检查“这段 C 代码 VS2010 编不过”
+  用法：在你自己的 .vcxproj 里，最后一个 </Project> 之前加一行：
+      <Import Project="D:\vs2010-kit\msbuild\Vs2010Guard.targets" />
+  默认以“警告”形式出现在错误列表，构建照常成功；
+  想让它在 2026 里直接当错误挡住构建：加 /p:Vs2010CheckAsError=true
+  想临时关掉：加 /p:Vs2010CheckEnabled=false
+-->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Vs2010KitDir Condition="'$(Vs2010KitDir)' == ''">D:\vs2010-kit\</Vs2010KitDir>
+    <Vs2010Python Condition="'$(Vs2010Python)' == ''">python</Vs2010Python>
+    <Vs2010CheckEnabled Condition="'$(Vs2010CheckEnabled)' == ''">true</Vs2010CheckEnabled>
+    <Vs2010CheckAsError Condition="'$(Vs2010CheckAsError)' == ''">false</Vs2010CheckAsError>
+    <_Vs2010SeverityArg Condition="'$(Vs2010CheckAsError)' == 'true'">--msbuild</_Vs2010SeverityArg>
+    <_Vs2010SeverityArg Condition="'$(Vs2010CheckAsError)' != 'true'">--msbuild-warn</_Vs2010SeverityArg>
+  </PropertyGroup>
+
+  <Target Name="Vs2010CompatCheck" BeforeTargets="ClCompile" Condition="'$(Vs2010CheckEnabled)' == 'true'">
+    <ItemGroup>
+      <_Vs2010CFiles Include="@(ClCompile)" Condition="'%(ClCompile.Extension)' == '.c'" />
+    </ItemGroup>
+    <Exec Condition="'@(_Vs2010CFiles)' != ''"
+          Command="&quot;$(Vs2010Python)&quot; &quot;$(Vs2010KitDir)vs2010-c-scan.py&quot; $(_Vs2010SeverityArg) @(_Vs2010CFiles->'&quot;%(FullPath)&quot;', ' ')"
+          ContinueOnError="WarnAndContinue" />
+  </Target>
+</Project>

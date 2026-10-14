@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- 只是用来验证 vsix/Vs2010Guard 里的扩展源码能不能编译，不参与 VSIX 打包。
+       本机没装 VS 也能跑：dotnet build vsix/_compilecheck/Verify.csproj -->
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>7.3</LangVersion>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AssemblyName>Vs2010Guard</AssemblyName>
+    <RootNamespace>Vs2010Guard</RootNamespace>
+    <NoWarn>CS1591;CS0618</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\Vs2010Guard\Vs2010Rules.cs" />
+    <Compile Include="..\Vs2010Guard\Vs2010GuardTagger.cs" />
+    <Compile Include="..\Vs2010Guard\Vs2010GuardTaggerProvider.cs" />
+    <Compile Include="..\Vs2010Guard\Vs2010GuardDiagnostics.cs" />
+    <Compile Include="..\Vs2010Guard\Vs2010GuardSwitch.cs" />
+    <Compile Include="..\Vs2010Guard\Vs2010GuardPackage.cs" />
+    <Compile Include="..\Vs2010Guard\Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Design" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.SDK" Version="17.14.40265" ExcludeAssets="runtime" />
+    <PackageReference Include="Microsoft.VisualStudio.Text.UI" Version="17.14.249" />
+  </ItemGroup>
+</Project>
